@@ -1,6 +1,6 @@
 [[ -d ~/bin ]] && export PATH=$HOME/bin:$PATH
 
-[[ -z "$TMUX" ]] && [[ -f $HOME/bin/tat ]] && $HOME/bin/tat
+[[ -z "$SPIN" ]] && [[ -z "$TMUX" ]] && [[ -f $HOME/bin/tat ]] && $HOME/bin/tat
 
 export HISTSIZE=10000
 export SAVEHIST=5000
