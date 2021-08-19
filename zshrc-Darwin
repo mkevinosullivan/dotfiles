@@ -1,0 +1,14 @@
+if [[ -f $HOME/dotfiles/myfunctions-Darwin ]]; then
+  echo -e "\x1b[34mLoading my Darwin functions ...\x1b[0m"
+  source $HOME/dotfiles/myfunctions-Darwin
+fi
+
+if [[ -f $HOME/dotfiles/myaliases-Darwin ]]; then
+  echo -e "\x1b[34mLoading my Darwin aliases ...\x1b[0m"
+  source $HOME/dotfiles/myaliases-Darwin
+fi
+
+echo
+echo -e "\x1b[31mREMINDER:\x1b[0m"
+echo -e "Don't forget to source \x1b[31m.dev.rc\x1b[0m if needed"
+echo

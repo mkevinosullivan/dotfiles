@@ -1,0 +1,23 @@
+# createpr
+function createpr {
+  if (( $# == 0 )); then
+    echo -e "\x1b[31musage:\x1b[0m createpr <title of PR, in quotes>"
+  else
+    descfile=$(/usr/bin/mktemp /tmp/descfile.XXXXXXXX)
+    /bin/mv $descfile $descfile.md
+    if [ -e ./.github/PULL_REQUEST_TEMPLATE.md ]; then
+      /bin/cat ./.github/PULL_REQUEST_TEMPLATE.md > $descfile.md
+    fi
+
+    /usr/local/bin/code -n -w $descfile.md
+    /usr/local/bin/gh pr create --draft --title $1 --body "$(/bin/cat $descfile.md)"
+    /bin/rm -f $descfile.md
+    /usr/local/bin/gh pr view --web
+  fi
+}
+echo -e "\x1b[32m\u2713 createpr\x1b[0m"
+
+# next function would go below this line
+#
+#
+# echo -e "\x1b[32m\u2713 <function_name>\x1b[0m"

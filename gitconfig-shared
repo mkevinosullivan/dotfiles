@@ -1,0 +1,17 @@
+[alias]
+        hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+        lp = push --force-with-lease
+        irb = rebase --interactive
+        last = log -1 HEAD --stat
+        cm = commit -m
+        gl = config --global -l
+        co = checkout
+        cob = checkout -b
+        cam = commit -am
+[rerere]
+        enabled = true
+[pull]
+        rebase = true
+        prune = true
+[init]
+        defaultBranch = main

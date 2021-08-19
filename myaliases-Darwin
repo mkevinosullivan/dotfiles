@@ -1,0 +1,5 @@
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window'
+echo -e "\x1b[32m\u2713 chrome\x1b[0m => /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --new-window"
+
+alias loaddev="source $HOME/.dev.rc"
+echo -e "\x1b[32m\u2713 loaddev\x1b[0m => source \$HOME/.dev.rc"

@@ -1,0 +1,15 @@
+[[ -d ~/bin ]] && export PATH=$HOME/bin:$PATH
+
+[[ -z "$TMUX" ]] && [[ -f $HOME/bin/tat ]] && $HOME/bin/tat
+
+export HISTSIZE=10000
+export SAVEHIST=5000
+
+echo -e "\x1b[34mLoading my shared functions ...\x1b[0m"
+source $HOME/dotfiles/myfunctions-shared
+
+echo -e "\x1b[34mLoading my shared aliases ...\x1b[0m"
+source $HOME/dotfiles/myaliases-shared
+
+OS=$(uname)
+[[ -f $HOME/dotfiles/zshrc-$OS ]] && source $HOME/dotfiles/zshrc-$OS

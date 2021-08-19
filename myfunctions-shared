@@ -1,0 +1,14 @@
+# myrbgrep
+function myrbgrep {
+  if (( $# == 0 )); then
+    echo -e "\x1b[31musage:\x1b[0m myrbgrep <dir> <search term>"
+  else
+    clear && find $1 -type f -name "*.rb" -exec grep -n -H $2 {} \;
+  fi
+}
+echo -e "\x1b[32m\u2713 myrbgrep\x1b[0m"
+
+# next function would go below this line
+#
+#
+# echo -e "\x1b[32m\u2713 <function_name>\x1b[0m"
