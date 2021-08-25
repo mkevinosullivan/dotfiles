@@ -12,6 +12,7 @@
         enabled = true
 [pull]
         rebase = true
+[fetch]
         prune = true
 [init]
         defaultBranch = main
