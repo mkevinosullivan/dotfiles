@@ -1,5 +1,5 @@
-alias history='fc -l 2000'
-echo -e "\x1b[32m\u2713 history\x1b[0m => fc -l 2000"
+alias history='fc -l 0'
+echo -e "\x1b[32m\u2713 history\x1b[0m => fc -l 0"
 
 alias gits="git status -s"
 echo -e "\x1b[32m\u2713 gits\x1b[0m => git status -s"
