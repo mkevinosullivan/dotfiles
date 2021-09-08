@@ -59,11 +59,19 @@ then
   echo -e "Don't forget to delete both these files after examination."
   exit
 fi
+if grep "key generation failed" $OUTPUT_TMPFILE > /dev/null 2>&1
+then
+  echo -e "\x1b[31mOoops... something went wrong!\x1b[0m"
+  echo -e "\x1b[36mgpg --generate-key\x1b[0m failed."
+  echo -e "Check the input file: \x1b[36m$INPUT_TMPFILE\x1b[0m..."
+  echo -e "... and the output file: \x1b[36m$OUTPUT_TMPFILE\x1b[0m\n"
+  echo -e "Don't forget to delete both these files after examination."
+  exit
+fi
 rm $INPUT_TMPFILE
 
 ## 3. set the key locally
-# gpg: key 433A99473E6575D5 marked as ultimately trusted
-KEY=$(awk '/gpg: key/ {print $3}' $OUTPUT_TMPFILE)
+KEY=$(awk '/gpg: key / {print $3}' $OUTPUT_TMPFILE)
 if [[ -z "$KEY" ]]
 then
   echo -e "\x1b[31mOoops... something went wrong!\x1b[0m"
