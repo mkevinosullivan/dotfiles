@@ -22,10 +22,14 @@ if [[ -z "$SPIN" ]]; then
   # not a spin instance => grab the first part of the hostname
   HOSTNAME=$(hostname | sed 's/\..*//')
   echo -e "\x1b[36m$HOSTNAME\x1b[0m appears \x1b[31mNOT\x1b[0m to be a SPIN instance..."
+  [[ -z "$GNUPGHOME" ]] && export GNUPGHOME=$HOME/.gnupg
 else
   # is a spin instance => grab the second part of the hostname, i.e., the spin name
   HOSTNAME=$(hostname | sed 's/[^.]*\.//' | sed 's/\..*//')
   echo -e "This machines appears to be a \x1b[32mSPIN\x1b[0m instance named \x1b[36m$HOSTNAME\x1b[0m..."
+
+  # on SPIN, $HOME/.gnupg generates a permissions error, hence use of an ephemeral directory
+  [[ -z "$GNUPGHOME" ]] && export GNUPGHOME=$(mktemp -d /tmp/gnupg.XXXXXX)
 fi
 
 echo "Enter a passphrase, followed by [ENTER]"
@@ -34,6 +38,8 @@ read PASSPHRASE
 echo -e "\n\x1b[31mNote: store the passphrase somewhere safe, in case you'll need to use it later.\x1b[0m\n"
 
 ## 2. generate the key
+echo -e "GNUPGHOME set to \x1b[36m$GNUPGHOME\x1b[0m"
+
 INPUT_TMPFILE=$(mktemp /tmp/gkgin.XXXXXX)
 cat >$INPUT_TMPFILE <<EOF
   %echo Generating a basic OpenPGP key
@@ -50,7 +56,16 @@ cat >$INPUT_TMPFILE <<EOF
 EOF
 
 OUTPUT_TMPFILE=$(mktemp /tmp/gkgout.XXXXXX)
-if ! gpg --batch --generate-key $INPUT_TMPFILE 2>&1 | tee $OUTPUT_TMPFILE
+if ! gpg --homedir $GNUPGHOME --batch --generate-key $INPUT_TMPFILE 2>&1 | tee $OUTPUT_TMPFILE
+then
+  echo -e "\x1b[31mOoops... something went wrong!\x1b[0m"
+  echo -e "\x1b[36mgpg --generate-key\x1b[0m failed."
+  echo -e "Check the input file: \x1b[36m$INPUT_TMPFILE\x1b[0m..."
+  echo -e "... and the output file: \x1b[36m$OUTPUT_TMPFILE\x1b[0m\n"
+  echo -e "Don't forget to delete both these files after examination."
+  exit
+fi
+if grep "key generation failed" $OUTPUT_TMPFILE
 then
   echo -e "\x1b[31mOoops... something went wrong!\x1b[0m"
   echo -e "\x1b[36mgpg --generate-key\x1b[0m failed."
@@ -62,8 +77,7 @@ fi
 rm $INPUT_TMPFILE
 
 ## 3. set the key locally
-# gpg: key 433A99473E6575D5 marked as ultimately trusted
-KEY=$(awk '/gpg: key/ {print $3}' $OUTPUT_TMPFILE)
+KEY=$(awk '/gpg: key / {print $3}' $OUTPUT_TMPFILE)
 if [[ -z "$KEY" ]]
 then
   echo -e "\x1b[31mOoops... something went wrong!\x1b[0m"
@@ -91,4 +105,11 @@ then
   echo -e "  Key ID \x1b[32m$KEY\x1b[0m is associated with hostname \x1b[36m$HOSTNAME\x1b[0m"
 else
   echo -e "  Key ID \x1b[32m$KEY\x1b[0m is associated with SPIN instance \x1b[36m$HOSTNAME\x1b[0m"
+fi
+
+if ! grep "export GNUPGHOME" $HOME/.zshrc > /dev/null 2>&1
+then
+  echo -e "Setting \x1b[32mGNUPGHOME\x1b[0m to \x1b[36m$GNUPGHOME\x1b[0m in \x1b[36m$HOME/.zshrc\x1b[0m"
+  echo "export GNUPGHOME=$GNUPGHOME" >> $HOME/.zshrc
+  echo -e "Please run \x1b[36msource $HOME/.zshrc\x1b[0m to set GNUPGHOME in current shell."
 fi
