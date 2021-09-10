@@ -18,14 +18,18 @@ then
 fi
 echo -e "Using name \x1b[32m$NAME\x1b[0m and email address \x1b[32m$EMAIL\x1b[0m..."
 
-if [[ -z "$SPIN" ]]; then
-  # not a spin instance => grab the first part of the hostname
-  HOSTNAME=$(hostname | sed 's/\..*//')
-  echo -e "\x1b[36m$HOSTNAME\x1b[0m appears \x1b[31mNOT\x1b[0m to be a SPIN instance..."
+cat <<EOF
+(Optional) A short comment can be included in the user name of the key
+to help identify what the key is used for, e.g., signing from a specific
+computer.  For no comment, just press [ENTER].
+Enter a short comment (<20 characters), followed by [ENTER]...
+EOF
+read COMMENT
+if [[ -z "$COMMENT" ]]
+then
+  NAME_COMMENT=""
 else
-  # is a spin instance => grab the second part of the hostname, i.e., the spin name
-  HOSTNAME=$(hostname | sed 's/[^.]*\.//' | sed 's/\..*//')
-  echo -e "This machines appears to be a \x1b[32mSPIN\x1b[0m instance named \x1b[36m$HOSTNAME\x1b[0m..."
+  NAME_COMMENT="Name-Comment: $COMMENT"
 fi
 
 echo "Enter a passphrase, followed by [ENTER]"
@@ -41,7 +45,7 @@ cat >$INPUT_TMPFILE <<EOF
   Key-Length: 4096
   Key-Usage: sign
   Name-Real: $NAME
-  Name-Comment: $HOSTNAME
+  $NAME_COMMENT
   Name-Email: $EMAIL
   Expire-Date: 0
   Passphrase: $PASSPHRASE
@@ -81,9 +85,15 @@ then
 fi
 rm $OUTPUT_TMPFILE
 
-echo "Setting the signing key in the global gitconfig file..."
-git config --global user.signingkey $KEY
-git config --global commit.gpgsign true
+echo -ne "Do you wish to use this key for git commit signing on \x1b[37;1mTHIS\x1b[0m computer? [\x1b[37;1mN\x1b[0my] "
+read YESNO
+
+if [[ "$YESNO" == "Y" || "$YESNO" == "y" ]]
+then
+  echo "Setting the signing key in the global gitconfig file..."
+  git config --global user.signingkey $KEY
+  git config --global commit.gpgsign true
+fi
 
 ## 4. advise user to copy key to their GitHub account
 gpg --armor --export $KEY
@@ -92,11 +102,9 @@ echo -e "and ending with \x1b[32m-----END PGP PUBLIC KEY BLOCK-----\x1b[0m\n"
 echo "In a browser window that is logged into the GitHub account associated with"
 echo -e "\x1b[32m$EMAIL\x1b[0m, go to \x1b[36mhttps://github.com/settings/keys\x1b[0m"
 echo "and add the new GPG key to your account.\n"
-echo "Unfortunately, GitHub only shows the email address associated with each key, so note the"
-echo "following details somewhere safe so you know which GPG Key ID is associated with this machine:"
-if [[ -z "$SPIN" ]]
-then
-  echo -e "  Key ID \x1b[32m$KEY\x1b[0m is associated with hostname \x1b[36m$HOSTNAME\x1b[0m"
-else
-  echo -e "  Key ID \x1b[32m$KEY\x1b[0m is associated with SPIN instance \x1b[36m$HOSTNAME\x1b[0m"
-fi
+echo "Unfortunately, GitHub only shows the email address associated with each key, so"
+echo "note the KeyID and passphrase below somewhere safe, as well as its intended use,"
+echo "e.g., which computer/SPIN instance it's associated with."
+echo -e "-> Key ID    : \x1b[32m$KEY\x1b[0m"
+echo -e "-> Passphrase: \x1b[32m$PASSPHRASE\x1b[0m"
+echo -e "-> Comment   : \x1b[32m$COMMENT\x1b[0m"
