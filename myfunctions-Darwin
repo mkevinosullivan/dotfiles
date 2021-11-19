@@ -17,6 +17,16 @@ function createpr {
 }
 echo -e "\x1b[32m\u2713 createpr\x1b[0m"
 
+# staging
+function staging {
+  if (( $# == 0 )); then
+    echo -e "\x1b[31musage:\x1b[0m staging <number of staging env>"
+  else
+    /usr/bin/env git push origin +$(git rev-parse --abbrev-ref HEAD):staging$1
+  fi
+}
+echo -e "\x1b[32m\u2713 staging\x1b[0m"
+
 # next function would go below this line
 #
 #
