@@ -7,5 +7,5 @@ echo -e "\x1b[32m\u2713 gits\x1b[0m => git status -s"
 alias conflicts="find -f . ! -path '*/.git/*' -type f -exec grep -l -I '>>>>>>>\|=======\|<<<<<<<' {} \;"
 echo -e "\x1b[32m\u2713 conflicts\x1b[0m => find -f . ! -path '*/.git/*' -type f -exec grep -l -I '>>>>>>>\|=======\|<<<<<<<' {} \;"
 
-alias firstpush="git push -u origin $(git rev-parse --abbrev-ref HEAD)"
-echo -e "\x1b[32m\u2713 firstpush\x1b[0m => git push -u origin \$(git rev-parse --abbrev-ref HEAD)"
+alias firstpush="git push -u origin @"
+echo -e "\x1b[32m\u2713 firstpush\x1b[0m => git push -u origin @"
