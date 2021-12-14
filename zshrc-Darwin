@@ -1,3 +1,10 @@
+if [ -f /usr/local/share/zsh/site-functions/prompt_spaceship_setup ]
+then
+  # Set Spaceship ZSH as a prompt - requires 'brew install spaceship'
+  autoload -U promptinit; promptinit
+  prompt spaceship
+fi
+
 if [[ -f $HOME/dotfiles/myfunctions-Darwin ]]; then
   echo -e "\x1b[34mLoading my Darwin functions ...\x1b[0m"
   source $HOME/dotfiles/myfunctions-Darwin

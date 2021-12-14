@@ -5,6 +5,12 @@
 export HISTSIZE=10000
 export SAVEHIST=5000
 
+export PROMPT=$'%F{green}%D{%b %d, %H:%M}%f %~\n%# '
+# export RPROMPT='%F{green}%D{%b %d, %H:%M}%f'
+
+# minimal prompt for screen recordings
+# export PROMPT="%# "
+
 echo -e "\x1b[34mLoading my shared functions ...\x1b[0m"
 source $HOME/dotfiles/myfunctions-shared
 
