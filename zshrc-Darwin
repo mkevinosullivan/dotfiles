@@ -1,6 +1,7 @@
-if [ -f /usr/local/share/zsh/site-functions/prompt_spaceship_setup ]
+if brew list -q spaceship >/dev/null 2>&1
 then
   # Set Spaceship ZSH as a prompt - requires 'brew install spaceship'
+  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
   autoload -U promptinit; promptinit
   prompt spaceship
 fi
