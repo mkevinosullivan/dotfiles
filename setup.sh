@@ -10,7 +10,7 @@ if brew list -q tmux >/dev/null 2>&1
 then
   ### tmux is installed, set up tmux configuration
   [[ -f ~/dotfiles/tmux.conf ]] && ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
-  # [[ -f ~/dotfiles/tat ]] && ln -sf ~/dotfiles/tat ~/bin/tat
+  [[ -f ~/dotfiles/tat ]] && ln -sf ~/dotfiles/tat ~/bin/tat
 fi
 
 ### add lines to .zshrc to include personalization on shell creation
