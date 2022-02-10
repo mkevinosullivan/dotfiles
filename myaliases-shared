@@ -9,3 +9,9 @@ echo -e "\x1b[32m\u2713 conflicts\x1b[0m => find -f . ! -path '*/.git/*' -type f
 
 alias firstpush="git push -u origin @"
 echo -e "\x1b[32m\u2713 firstpush\x1b[0m => git push -u origin @"
+
+alias pull="git pull"
+echo -e "\x1b[32m\u2713 pull\x1b[0m => git pull"
+
+alias be="bundle exec"
+echo -e "\x1b[32m\u2713 be\x1b[0m => bundle exec"
