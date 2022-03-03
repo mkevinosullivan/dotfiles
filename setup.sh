@@ -13,6 +13,9 @@ then
   [[ -f ~/dotfiles/tat ]] && ln -sf ~/dotfiles/tat ~/bin/tat
 fi
 
+### if on Spin, pull in Spin configuration
+[[ "$SPIN"]] && [[ -f ~/dotfiles/spin.sh ]] && ~/dotfiles/spin.sh
+
 ### add lines to .zshrc to include personalization on shell creation
 cat << BLOCK >> ~/.zshrc
 
