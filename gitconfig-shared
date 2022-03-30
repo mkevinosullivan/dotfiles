@@ -1,13 +1,15 @@
 [alias]
-        hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-        lp = push --force-with-lease
-        irb = rebase --interactive
-        last = log -1 HEAD --stat
-        cm = commit -m
-        gl = config --global -l
+        ac = commit --all
+        acm = commit --all --message
+        cm = commit --message
+        cgl = config --global --list
+        cl = config --list --show-origin
         co = checkout
         cob = checkout -b
-        cam = commit -am
+        hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+        irb = rebase --interactive
+        last = log -1 HEAD --stat
+        lp = push --force-with-lease
 [rerere]
         enabled = true
 [pull]
