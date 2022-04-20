@@ -17,5 +17,10 @@ source $HOME/dotfiles/myfunctions-shared
 echo -e "\x1b[34mLoading my shared aliases ...\x1b[0m"
 source $HOME/dotfiles/myaliases-shared
 
+export EDITOR=vim
+echo -e "\x1b[34mBinding ^x^e to edit-command-line ... EDITOR=\x1b[32m$EDITOR\x1b[34m ...\x1b[0m"
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 OS=$(uname)
 [[ -f $HOME/dotfiles/zshrc-$OS ]] && source $HOME/dotfiles/zshrc-$OS
