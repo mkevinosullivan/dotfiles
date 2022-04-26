@@ -7,6 +7,7 @@
         ci = commit
         cm = commit --message
         empty = commit --allow-empty --message '(intentionally empty)'
+        wip = commit --all --message 'wip'
 
         # listing branches
         b = branch
@@ -27,10 +28,11 @@
 
         # pretty printing history and logs
         current = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
-        last = log -1 HEAD --stat
-        hist = log --graph --abbrev-commit --pretty=format:'%C(red)%h%C(reset) - %s %C(green)(%cr) %C(blue)<%an>%C(magenta)%d%C(reset)'
-        oneline = log --pretty=format:'%C(red)%h%C(reset) %C(green)%ad%C(reset) - %s%C(magenta)%d %C(blue)<%an>%C(reset)' --date=short
         graph = log --graph -9 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+        hist = log --graph --abbrev-commit --pretty=format:'%C(red)%h%C(reset) - %s %C(green)(%cr) %C(blue)<%an>%C(magenta)%d%C(reset)'
+        last = log -1 HEAD --stat
+        last5 = log -5 HEAD --stat
+        oneline = log --pretty=format:'%C(red)%h%C(reset) %C(green)%ad%C(reset) - %s%C(magenta)%d %C(blue)<%an>%C(reset)' --date=short
 
         # working with files and remotes
         irb = rebase --interactive
