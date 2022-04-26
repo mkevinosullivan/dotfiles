@@ -1,15 +1,47 @@
 [alias]
+        # adds and commits
+        aa = add --all --verbose .
         ac = commit --all
         acm = commit --all --message
+        amend = commit --amend --no-edit
+        ci = commit
         cm = commit --message
+
+        # listing branches
+        b = branch
+        ba = branch -a
+
+        # show configuration
         cgl = config --global --list
         cl = config --list --show-origin
+
+        # checkouts
         co = checkout
         cob = checkout -b
-        hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-        irb = rebase --interactive
+
+        # show difference between working tree and the index
+        d = diff
+        dc = diff --cached
+        ds = diff --staged
+
+        # pretty printing history and logs
+        current = log --pretty=format:'%ad %h %d' --abbrev-commit --date=short -1
         last = log -1 HEAD --stat
-        lp = push --force-with-lease
+        hist = log --graph --abbrev-commit --pretty=format:'%C(red)%h%C(reset) - %s %C(green)(%cr) %C(blue)<%an>%C(magenta)%d%C(reset)'
+        oneline = log --pretty=format:'%C(red)%h%C(reset) %C(green)%ad%C(reset) - %s%C(magenta)%d %C(blue)<%an>%C(reset)' --date=short
+        graph = log --graph -9 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+
+        # working with files and remotes
+        irb = rebase --interactive
+        ls = ls-files
+        p = pull
+        pfwl = push --force-with-lease
+        pile = stash --include-untracked
+        pop = stash pop
+        remotes = remote -v
+        undo = reset HEAD~1
+        unstage = reset -q HEAD --
+
 [rerere]
         enabled = true
 [pull]
