@@ -6,6 +6,7 @@
         amend = commit --amend --no-edit
         ci = commit
         cm = commit --message
+        empty = commit --allow-empty --message '(intentionally empty)'
 
         # listing branches
         b = branch
