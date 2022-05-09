@@ -32,7 +32,9 @@
         hist = log --graph --abbrev-commit --pretty=format:'%C(red)%h%C(reset) - %s %C(green)(%cr) %C(blue)<%an>%C(magenta)%d%C(reset)'
         last = log -1 HEAD --stat
         last5 = log -5 HEAD --stat
-        oneline = log --pretty=format:'%C(red)%h%C(reset) %C(green)%ad%C(reset) - %s%C(magenta)%d %C(blue)<%an>%C(reset)' --date=short
+        ol = log --pretty=format:'%C(red)%h%C(reset) %C(green)%ad%C(reset) - %s%C(magenta)%d %C(blue)<%an>%C(reset)' --date=short
+        ol5 = ol -n 5
+        ol10 = ol -n 10
 
         # working with files and remotes
         irb = rebase --interactive
