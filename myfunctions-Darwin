@@ -27,13 +27,13 @@ function staging {
 }
 echo -e "\x1b[32m\u2713 staging\x1b[0m"
 
-# next function would go below this line
+# mainbranch
 function mainbranch {
   /usr/bin/env git remote show origin | /usr/bin/env sed -n '/HEAD branch/s/.*: //p'
 }
 echo -e "\x1b[32m\u2713 mainbranch\x1b[0m"
 
-# next function would go below this line
+# clrb
 function clrb {
   mainreference="origin/$(mainbranch)"
   echo -e "Comparing current HEAD to \x1b[32m$mainreference\x1b[0m ..."
@@ -46,7 +46,6 @@ function clrb {
   fi
 }
 echo -e "\x1b[32m\u2713 clrb\x1b[0m"
-
 
 # next function would go below this line
 #
