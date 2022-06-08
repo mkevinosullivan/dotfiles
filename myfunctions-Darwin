@@ -40,7 +40,7 @@ function clrb {
   count=$(/usr/bin/env git rev-list --count $mainreference..HEAD)
   if (($count > 0)); then
     echo -e "Rebasing \x1b[32m$count\x1b[0m commits ..."
-    /usr/bin/env git irb HEAD~$((count+1))
+    /usr/bin/env git irb HEAD~$((count))
   else
     echo "No commits to rebase."
   fi
