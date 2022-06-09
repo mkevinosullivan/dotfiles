@@ -22,5 +22,15 @@ echo -e "\x1b[34mBinding ^x^e to edit-command-line ... EDITOR=\x1b[32m$EDITOR\x1
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-OS=$(uname)
-[[ -f $HOME/dotfiles/zshrc-$OS ]] && source $HOME/dotfiles/zshrc-$OS
+if brew list -q spaceship >/dev/null 2>&1
+then
+  # Set Spaceship ZSH as a prompt - requires 'brew install spaceship'
+  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+  autoload -U promptinit; promptinit
+  prompt spaceship
+fi
+
+if [ -d /opt/dev ]
+then
+  [[ -f $HOME/dotfiles/zshrc-Shopify ]] && source $HOME/dotfiles/zshrc-Shopify
+fi

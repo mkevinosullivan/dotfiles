@@ -44,6 +44,7 @@
         pile = stash --include-untracked
         pop = stash pop
         remotes = remote -v
+        trash = !mkdir -p .trash && git ls-files --others --exclude-standard | xargs -I%% mv -f %% .trash
         undo = reset HEAD~1
         unstage = reset -q HEAD --
 

@@ -1,0 +1,14 @@
+if [[ -f $HOME/dotfiles/myfunctions-Shopify ]]; then
+  echo -e "\x1b[34mLoading my Shopify functions ...\x1b[0m"
+  source $HOME/dotfiles/myfunctions-Shopify
+fi
+
+if [[ -f $HOME/dotfiles/myaliases-Shopify ]]; then
+  echo -e "\x1b[34mLoading my Shopify aliases ...\x1b[0m"
+  source $HOME/dotfiles/myaliases-Shopify
+fi
+
+echo
+echo -e "\x1b[31mREMINDER:\x1b[0m"
+echo -e "Don't forget to source \x1b[31m.dev.rc\x1b[0m if needed"
+echo

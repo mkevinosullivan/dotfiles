@@ -3,6 +3,15 @@
 ### include shared git configuration into ~/.gitconfig
 [[ -f ~/dotfiles/gitconfig-shared ]] && git config --global include.path ~/dotfiles/gitconfig-shared
 
+### setup global gitignore
+if [ ! -f ~/.gitignore_global ]
+then
+    echo "global gitignore not found, creating..."
+    echo "*.DS_Store" > ~/.gitignore_global
+    echo ".trash" >> ~/.gitignore_global
+fi
+git config --global core.excludesfile ~/.gitignore_global
+
 ### set up some personal executables
 mkdir -p ~/bin
 
