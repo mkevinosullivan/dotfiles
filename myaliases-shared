@@ -1,3 +1,6 @@
+alias ll='ls -la'
+echo -e "\x1b[32m\u2713 ll\x1b[0m => ls -la"
+
 alias history='fc -l 0'
 echo -e "\x1b[32m\u2713 history\x1b[0m => fc -l 0"
 
