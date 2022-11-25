@@ -1,6 +1,6 @@
 [[ -d ~/bin ]] && export PATH=$HOME/bin:$PATH
 
-[[ -z "$SPIN" ]] && [[ -z "$TMUX" ]] && [[ -f $HOME/bin/tat ]] && $HOME/bin/tat
+# [[ -z "$SPIN" ]] && [[ -z "$TMUX" ]] && [[ -f $HOME/bin/tat ]] && $HOME/bin/tat
 
 export HISTSIZE=10000
 export SAVEHIST=5000
@@ -22,12 +22,10 @@ echo -e "\x1b[34mBinding ^x^e to edit-command-line ... EDITOR=\x1b[32m$EDITOR\x1
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^x^e' edit-command-line
 
-if brew list -q spaceship >/dev/null 2>&1
+if [[ -f $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh ]]
 then
   # Set Spaceship ZSH as a prompt - requires 'brew install spaceship'
-  fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
-  autoload -U promptinit; promptinit
-  prompt spaceship
+  source $HOMEBREW_PREFIX/opt/spaceship/spaceship.zsh
 fi
 
 if [ -d /opt/dev ]
