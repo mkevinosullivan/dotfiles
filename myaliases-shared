@@ -19,6 +19,12 @@ echo -e "\x1b[32m\u2713 firstpush\x1b[0m => git push -u origin @"
 alias pull="git pull"
 echo -e "\x1b[32m\u2713 pull\x1b[0m => git pull"
 
+alias gco="git checkout"
+echo -e "\x1b[32m\u2713 gco\x1b[0m => git checkout"
+
+alias gac="git ac"
+echo -e "\x1b[32m\u2713 gac\x1b[0m => git ac"
+
 alias pfwl="git pfwl"
 echo -e "\x1b[32m\u2713 pfwl\x1b[0m => git pfwl == push force-with-lease"
 
