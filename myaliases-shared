@@ -22,6 +22,9 @@ echo -e "\x1b[32m\u2713 pull\x1b[0m => git pull"
 alias gco="git checkout"
 echo -e "\x1b[32m\u2713 gco\x1b[0m => git checkout"
 
+alias gco="git checkout -b"
+echo -e "\x1b[32m\u2713 gcob\x1b[0m => git checkout -b"
+
 alias gac="git ac"
 echo -e "\x1b[32m\u2713 gac\x1b[0m => git ac"
 
