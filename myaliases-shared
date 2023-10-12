@@ -31,6 +31,9 @@ echo -e "\x1b[32m\u2713 gac\x1b[0m => git ac"
 alias pfwl="git pfwl"
 echo -e "\x1b[32m\u2713 pfwl\x1b[0m => git pfwl == push force-with-lease"
 
+alias wip="git wip"
+echo -e "\x1b[32m\u2713 wip\x1b[0m => git wip == commit --all --message 'wip'"
+
 alias be="bundle exec"
 echo -e "\x1b[32m\u2713 be\x1b[0m => bundle exec"
 
