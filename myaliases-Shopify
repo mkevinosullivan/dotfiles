@@ -6,3 +6,6 @@ echo -e "\x1b[32m\u2713 loaddev\x1b[0m => source \$HOME/.dev.rc"
 
 alias acf='git add .changeset && git commit -m "Add changeset file" && git push --force-with-lease'
 echo -e "\x1b[32m\u2713 acf\x1b[0m => git add .changeset && git commit -m \"Add changeset file\" && git push --force-with-lease"
+
+alias reset-bluetooth='blueutil --power 0 && sleep 2 && blueutil --power 1'
+echo -e "\x1b[32m\u2713 reset-bluetooth\x1b[0m => blueutil --power 0 && sleep 2 && blueutil --power 1"
