@@ -19,6 +19,9 @@ echo -e "\x1b[32m\u2713 firstpush\x1b[0m => git push -u origin @"
 alias pull="git pull"
 echo -e "\x1b[32m\u2713 pull\x1b[0m => git pull"
 
+alias fetch="git fetch"
+echo -e "\x1b[32m\u2713 fetch\x1b[0m => git fetch"
+
 alias gco="git checkout"
 echo -e "\x1b[32m\u2713 gco\x1b[0m => git checkout"
 
