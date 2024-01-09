@@ -12,3 +12,11 @@ echo -e "\x1b[32m\u2713 staging\x1b[0m"
 #
 #
 # echo -e "\x1b[32m\u2713 <function_name>\x1b[0m"
+
+# load auto-completions of spin command
+if [ -f /usr/local/bin/spin ]
+then
+    autoload -Uz compinit && compinit
+    source <(spin completion)
+fi
+echo -e "\x1b[32m\u2713\x1b[0m (autocompletion functions for \x1b[32mspin\x1b[0m command)\x1b[0m"
