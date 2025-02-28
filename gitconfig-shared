@@ -50,9 +50,29 @@
 
 [rerere]
         enabled = true
+        autoupdate = true
 [pull]
         rebase = true
 [fetch]
         prune = true
+        all = true
+        pruneTags = true
 [init]
         defaultBranch = main
+[column]
+        ui = auto
+[branch]
+        sort = -committerdate
+[tag]
+        sort = version:refname
+[diff]
+        renames = true
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+[push]
+        autoSetupRemote = true
+[rebase]
+        updateRefs = true
+[merge]
+        conflictstyle = zdiff3
