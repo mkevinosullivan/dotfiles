@@ -37,6 +37,7 @@
         ol10 = ol -n 10
 
         # working with files and remotes
+        fetchthis = "!bname=$(git rev-parse --abbrev-ref HEAD); git fetch origin $bname"
         irb = rebase --interactive
         ls = ls-files
         p = pull
