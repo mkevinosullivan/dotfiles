@@ -47,6 +47,12 @@ function clrb {
 }
 echo -e "\x1b[32m\u2713 clrb\x1b[0m"
 
+# thisbranch
+function thisbranch {
+  /usr/bin/env git rev-parse --abbrev-ref HEAD
+}
+echo -e "\x1b[32m\u2713 thisbranch\x1b[0m"
+
 # next function would go below this line
 #
 #
