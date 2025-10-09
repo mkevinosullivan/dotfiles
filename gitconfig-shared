@@ -61,7 +61,7 @@
 [init]
         defaultBranch = main
 [column]
-        ui = auto
+        ui = never
 [branch]
         sort = -committerdate
 [tag]
