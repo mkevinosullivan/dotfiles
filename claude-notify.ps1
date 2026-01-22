@@ -1,0 +1,16 @@
+param(
+    [string]$title = "Claude Code",
+    [string]$message = "Notification"
+)
+
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+$notification = New-Object System.Windows.Forms.NotifyIcon
+$notification.Icon = [System.Drawing.SystemIcons]::Information
+$notification.BalloonTipTitle = $title
+$notification.BalloonTipText = $message
+$notification.Visible = $true
+$notification.ShowBalloonTip(5000)
+Start-Sleep -Seconds 6
+$notification.Dispose()
